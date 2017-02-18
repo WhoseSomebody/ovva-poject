@@ -1,4 +1,4 @@
 # Тестове завдання для хакатону Int20h 2017
 Генератор картинки-розкладу програм на телеканалі 1+1 для обраної дати, використовуючи OVVA TV API.
 
-DEMO: http://schedule-1plus1.herokuapp.com/
+DEMO: https://schedule-1plus1.herokuapp.com/
