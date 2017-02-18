@@ -1,0 +1,20 @@
+{
+  "name": "ovva-tv",
+  "version": "1.0.0",
+  "main": "app.js",
+  "author": "SerG <serg.yaschuk@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.14.1",
+    "express-stylus": "^0.1.0",
+    "jade": "^1.11.0",
+    "nib": "^1.1.2",
+    "pug": "^2.0.0-beta11",
+    "request": "^2.79.0",
+    "stylus": "^0.54.5",
+    "webshot": "^0.18.0"
+  },
+  "engines": {
+    "node": "7.5.0"
+  }
+}

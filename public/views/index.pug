@@ -1,0 +1,83 @@
+doctype html
+html(lang="ua")
+    head
+        meta(charset="UTF-8")
+        title Генератор зображення телевізійної програми для каналу 1+1
+        link(rel="icon" type="image/png" href="yolo.ico" sizes="32x32")
+        link(rel="stylesheet" type="text/css" href='/style.css')
+    body
+        form(id="paramsFrom" method='GET' action='/image-generator')
+            .container
+                .logo
+                    a(href="http://1plus1.ua/")
+                        img(src="/logos.png")
+                    .head-title#head-title Телевізійна програма
+                    label.switch
+                        input(id="lang" type="checkbox")
+                        .slider
+            .out-of
+                label(for="date") Дата
+                    input(id="date" type="date" name="date" required)
+
+                button(id="submit" type="submit" title="Оберіть параметри для генерації зображення") Згенерувати
+
+        #result.hidden
+            h2(id="loading" style={display: "none"}) Генерація...
+            a#imglink(rel="nofollow" target="_blank" download)
+                img(id="image" src="")
+
+        script.
+            document.getElementById('lang').onclick = function () {
+                if (this.checked) {
+                    document.title = "Генератор изображения телевизионной программы для канала 1+1";
+                    document.getElementById("head-title").textContent = "Телевизионная программа";
+                    document.getElementById("submit").textContent = "Сгенерировать";
+                    document.getElementById("submit").setAttribute("title", "Выберите параметры для генерации изображения")
+                    document.getElementById("loading").textContent = "Генерация...";
+                } else {
+                    document.title = "Генератор зображення телевізійної програми для каналу 1+1";
+                    document.getElementById("head-title").textContent = "Телевізійна програма";
+                    document.getElementById("submit").textContent = "Згенерувати";
+                    document.getElementById("submit").setAttribute("title", "Оберіть параметри для генерації зображення")
+                    document.getElementById("loading").textContent = "Генерація...";
+                }
+            }
+
+            Date.prototype.toDateInputValue = (function () {
+                let local = new Date(this);
+                local.setMinutes(this.getMinutes() - this.getTimezoneOffset());
+                return local.toJSON().slice(0, 10);
+            });
+            document.getElementById("date").value = new Date().toDateInputValue();
+
+            let form = document.getElementById("paramsFrom");
+
+            document.onload = sendRequest();
+
+            form.onsubmit = e => {
+                e.preventDefault();
+                sendRequest();
+            }
+
+            function sendRequest() {
+                let date = document.getElementById("date").value;
+                let lang = document.getElementById("lang").checked ? "ru" : "ua";
+
+                document.getElementById("imglink").setAttribute("download", "1+1 TV-schedule "+date+".png")
+                document.getElementById("result").className = document.getElementById("result").className.replace("hidden","");
+                document.getElementById("loading").style.display = "block";
+                document.getElementById("image").style.display = "none";
+
+                //noinspection BadExpressionStatementJS
+                fetch(`/image-generator?lang=${lang}&date=${date}`)
+                    .then(function(response) {
+                        return response.blob();
+                    })
+                    .then(function(imageBlob) {
+                        document.getElementById("loading").style.display = "none";
+                        document.getElementById("image").style.display = "block";
+                        document.getElementById("image").src = URL.createObjectURL(imageBlob,"lol.png")
+                        document.getElementById("imglink").href = URL.createObjectURL(imageBlob)
+                    })
+                    .catch( e => console.log(e.message));
+            }
