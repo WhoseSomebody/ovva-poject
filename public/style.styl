@@ -1,3 +1,14 @@
+html
+  overflow scroll
+  overflow-x hidden
+
+::-webkit-scrollbar
+  width 1px
+  background transparent
+
+::-webkit-scrollbar-thumb
+  background #0000FF
+
 body
   font-family 'Philosopher', sans-serif
   padding 0
@@ -43,7 +54,7 @@ div.shedule-list
     margin-bottom 10px
     display flex
     flex-wrap wrap
-    //justify-content space-around
+//justify-content space-around
 
 
   article.program
@@ -150,7 +161,7 @@ div.shedule-list
     &:before
       position absolute
       content ""
-      height 9px
+      height 10px
       width 18px
       left 4px
       bottom 4px
@@ -194,10 +205,78 @@ div.shedule-list
     letter-spacing 2px
     cursor pointer
     margin 0 30px
+    transition 0.3s all
     &:focus
       outline none
     &:hover
       background-color #569bd8
+  #post-to-vk
+    border none
+    border-radius 0 2px 2px 0
+    height 36px
+    width 150px
+    text-align center
+    background-color #84c5ff
+    color white
+    font-weight bold
+    font-family "Philosopher"
+    font-size 17px
+    text-transform uppercase
+    letter-spacing 2px
+    cursor pointer
+    margin 0 57px 0 0px
+    line-height 36px
+    text-decoration none
+    transition 0.3s all
+    &:hover
+      background-color #569bd8
+      &.uploaded:after
+        content attr(data-status)
+        color attr(data-color)
+        text-transform uppercase
+        font-size 8px
+        display block
+        line-height 19px
+
+
+  #link-to-group
+    display block
+    border none
+    border-right 1px solid #ffffff
+    border-radius 2px 0 0 2px
+    height 36px
+    width 45px
+    background-color #84c5ff
+    color white
+    font-weight bold
+    font-family "Philosopher"
+    font-size 17px
+    text-transform uppercase
+    letter-spacing 2px
+    cursor pointer
+    line-height 36px
+    text-decoration none
+    transition 0.3s all
+    text-align center
+    &:before
+      content ""
+      display inline-block
+      position absolute
+      height 60px
+      width 35px
+      margin-left -19px
+      background-image url("vk.ico")
+      background-size 35px 35px
+      background-repeat no-repeat
+      filter invert() contrast(200%)
+    &:hover
+      background-color #569bd8
+      &:after
+        content attr(data-group-url)
+        display block
+        font-size 10px
+        margin 28px 0 0 0
+        text-transform none
 
 #result
   width 1234px
@@ -221,6 +300,7 @@ div.shedule-list
 
 .hidden
   opacity 0 !important
+
 @font-face {
   font-family: 'Philosopher';
   src: url('/fonts/Philosopher-Regular.ttf');
@@ -229,4 +309,17 @@ div.shedule-list
   font-family: 'Philosopher';
   font-weight: bold;
   src: url('/fonts/Philosopher-Bold.ttf');
+}
+@keyframes pulse {
+  from {
+    transform: scale3d(1, 1, 1);
+  }
+
+  50% {
+    transform: scale3d(1.05, 1.05, 1.05);
+  }
+
+  to {
+    transform: scale3d(1, 1, 1);
+  }
 }
