@@ -228,15 +228,21 @@ div.shedule-list
     line-height 36px
     text-decoration none
     transition 0.3s all
-    &:hover
+    &.uploaded
       background-color #569bd8
-      &.uploaded:after
+      pointer-events none
+      &:after
         content attr(data-status)
-        color attr(data-color)
         text-transform uppercase
         font-size 8px
         display block
         line-height 19px
+      &[data-color="red"]
+        color red !important
+      &[data-color="darkgreen"]
+        color darkgreen !important
+    &:hover
+      background-color #569bd8
 
 
   #link-to-group

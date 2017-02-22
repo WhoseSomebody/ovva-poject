@@ -60,6 +60,6 @@ router.get('/post-to-vk', (req, res) => {
     postScheduleOnWall()
         .then(response => res.json({success: "ok"}))
         .catch(error => res.status(400).json(error))
-})
+});
     
 module.exports = router;

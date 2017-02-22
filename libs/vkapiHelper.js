@@ -4,10 +4,8 @@ const path = require('path');
 
 function postScheduleOnWall() {
     return new Promise((resolve, reject) => {
-        const ACCESS_TOKEN = "24be8511a3d7b531f2a3252fe28ac1407e976aed8b14d94b88ff1a0840050294c52ec8503abd57c82f1d6"; //"a7c1c20183f2c5f780fa06299c94127f2920296fec338699b16540366ffc86a2021dd49a2f05cd1b3ef66";
-        const GROUP_ID = "140964630";
-        //"140564762";
-        const message = "Schedule";
+        const ACCESS_TOKEN = "a7c1c20183f2c5f780fa06299c94127f2920296fec338699b16540366ffc86a2021dd49a2f05cd1b3ef66";
+        const GROUP_ID = "140564762";
         const API_URL = "https://api.vk.com/method";
 
         let getUploadUrl = new Promise((resolve, reject) => {
